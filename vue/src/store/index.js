@@ -27,13 +27,13 @@ const store = createStore({
     },
     mutations: {
         logout: (state) => {
-            state.user.data = {};
-            state.user.token = null;
+          state.user.data = {};
+          state.user.token = null;
         },
         setUser: (state, userData) => {
-            state.user.token = userData.token;
-            state.user.data = userData.user;
-            sessionStorage.setItem('TOKEN', userData.token);
+          state.user.token = userData.data.token;
+          state.user.data = userData.data.user;
+          sessionStorage.setItem('TOKEN', userData.data.token);
         }
     },
     modules: {}
