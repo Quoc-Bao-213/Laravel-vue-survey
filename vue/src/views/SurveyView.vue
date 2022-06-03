@@ -17,8 +17,8 @@
             </label>
             <div class="mt-1 flex items-center">
               <img
-                v-if="model.image"
-                :src="model.image" 
+                v-if="model.image_url"
+                :src="model.image_url" 
                 :alt="model.title"
                 class="w-64 h-48 object-cover"
               />
@@ -190,6 +190,20 @@ if (route.params.id) {
   model.value = store.state.surveys.find(
     (s) => s.id === parseInt(route.params.id)
   );
+}
+
+function onImageChoose(ev) {
+  const file = ev.target.files[0];
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    // The field to send on backend and apply validations
+    model.value.image = reader.result;
+
+    // The field to display here
+    model.value.image_url = reader.result;
+  };
+  reader.readAsDataURL(file);
 }
 
 function addQuestion(index) {

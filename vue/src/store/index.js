@@ -43,6 +43,7 @@ const store = createStore({
     getters: {},
     actions: {
         saveSurvey({ commit }, survey) {
+            delete survey.image_url;
             let response;
 
             if (survey.id) {
