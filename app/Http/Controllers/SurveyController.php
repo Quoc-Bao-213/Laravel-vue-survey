@@ -22,7 +22,7 @@ class SurveyController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage. ◢ ◤
      *
      * @param  \App\Http\Requests\StoreSurveyRequest  $request
      * @return \Illuminate\Http\Response
@@ -35,7 +35,7 @@ class SurveyController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified resource. ◢ ◤
      *
      * @param  \App\Models\Survey  $survey
      * @return \Illuminate\Http\Response
@@ -52,7 +52,7 @@ class SurveyController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in storage. ◢ ◤
      *
      * @param  \App\Http\Requests\UpdateSurveyRequest  $request
      * @param  \App\Models\Survey  $survey
@@ -66,7 +66,7 @@ class SurveyController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from storage. ◢ ◤
      *
      * @param  \App\Models\Survey  $survey
      * @return \Illuminate\Http\Response
