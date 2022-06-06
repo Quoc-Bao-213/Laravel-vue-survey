@@ -1,36 +1,6 @@
 import { createStore } from "vuex";
 import axiosClient from "../axios";
 
-const tmpSurseys = [
-    {
-        id: 100,
-        title: 'title',
-        slug: 'slug',
-        status: 'draft',
-        image: null,
-        description: "My name is Cyrus",
-        created_at: "2022-02-06 18:00:00",
-        updated_at: "2022-02-06 18:00:00",
-        expire_date: "2022-02-30 18:00:00",
-        questions: [
-            {
-                id: 1,
-                type: "select",
-                question: "Hello world",
-                description: null,
-                data: {
-                    options: [
-                        { uuid: "asdasdasdsasdasd", text: "A" },
-                        { uuid: "asdaqwesdsasdasd", text: "B" },
-                        { uuid: "adsasdasdasdadsd", text: "C" },
-                        { uuid: "gfhgfhghfghsdasd", text: "D" },
-                    ]
-                }
-            }
-        ]
-    }
-];
-
 const store = createStore({
     state: {
         user: {
@@ -41,7 +11,10 @@ const store = createStore({
             loading: false,
             data: {}
         },
-        surveys: [...tmpSurseys],
+        surveys: {
+            loading: false,
+            data: []
+        },
         questionTypes: ["text", "select", "radio", "checkbox", "textarea"],
     },
     getters: {},
@@ -80,6 +53,14 @@ const store = createStore({
 
             return response;
         },
+        getSurveys({ commit }) {
+            commit('setSurveysLoading', true)
+            return axiosClient.get("/survey").then((res) => {
+                commit('setSurveysLoading', false)
+                commit('setSurveys', res.data);
+                return res;
+            });
+        },
         deleteSurvey: ({}, id) => {
             return axiosClient.delete(`/survey/${id}`);
         },
@@ -109,8 +90,14 @@ const store = createStore({
         setCurrentSurveyLoading: (state, loading) => {
             state.currentSurvey.loading = loading;
         },
+        setSurveysLoading: (state, loading) => {
+            state.surveys.loading = loading;
+        },
         setCurrentSurvey: (state, survey) => {
             state.currentSurvey.data = survey.data;
+        },
+        setSurveys: (state, surveys) => {
+            state.surveys.data = surveys.data;
         },
         // saveSurvey: (state, survey) => {
         //     state.surveys = [...state.surveys, survey.data];
