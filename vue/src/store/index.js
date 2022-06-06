@@ -80,6 +80,9 @@ const store = createStore({
 
             return response;
         },
+        deleteSurvey: ({}, id) => {
+            return axiosClient.delete(`/survey/${id}`);
+        },
         register({ commit }, user) {
             return axiosClient.post('/register', user)
                 .then((data) => {
