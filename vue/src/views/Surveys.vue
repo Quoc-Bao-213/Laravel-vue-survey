@@ -17,9 +17,11 @@
 
     <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
       <SurveyListItem 
-        v-for="survey in surveys" 
+        v-for="(survey, ind) in surveys" 
         :key="survey.id" 
         :survey="survey"
+        class="opacity-0 animate-fade-in-down"
+        :style="{animationDelay: `${ind * 0.1}s`}"
         @delete="deleteSurvey(survey)" 
       />
     </div>
